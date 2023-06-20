@@ -454,6 +454,70 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@motionone/animation@^10.15.1":
+  version "10.15.1"
+  resolved "https://registry.npmjs.org/@motionone/animation/-/animation-10.15.1.tgz"
+  integrity sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==
+  dependencies:
+    "@motionone/easing" "^10.15.1"
+    "@motionone/types" "^10.15.1"
+    "@motionone/utils" "^10.15.1"
+    tslib "^2.3.1"
+
+"@motionone/dom@^10.16.2":
+  version "10.16.2"
+  resolved "https://registry.npmjs.org/@motionone/dom/-/dom-10.16.2.tgz"
+  integrity sha512-bnuHdNbge1FutZXv+k7xub9oPWcF0hsu8y1HTH/qg6av58YI0VufZ3ngfC7p2xhMJMnoh0LXFma2EGTgPeCkeg==
+  dependencies:
+    "@motionone/animation" "^10.15.1"
+    "@motionone/generators" "^10.15.1"
+    "@motionone/types" "^10.15.1"
+    "@motionone/utils" "^10.15.1"
+    hey-listen "^1.0.8"
+    tslib "^2.3.1"
+
+"@motionone/easing@^10.15.1":
+  version "10.15.1"
+  resolved "https://registry.npmjs.org/@motionone/easing/-/easing-10.15.1.tgz"
+  integrity sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==
+  dependencies:
+    "@motionone/utils" "^10.15.1"
+    tslib "^2.3.1"
+
+"@motionone/generators@^10.15.1":
+  version "10.15.1"
+  resolved "https://registry.npmjs.org/@motionone/generators/-/generators-10.15.1.tgz"
+  integrity sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==
+  dependencies:
+    "@motionone/types" "^10.15.1"
+    "@motionone/utils" "^10.15.1"
+    tslib "^2.3.1"
+
+"@motionone/solid@^10.16.2":
+  version "10.16.2"
+  resolved "https://registry.npmjs.org/@motionone/solid/-/solid-10.16.2.tgz"
+  integrity sha512-0bl1KRDWc6BRcKXzRZR2KdRzIIN86SfSe8mcfKPwHYQDzdOEohRcYUsDaYlwWuwU07VCngOHZEPgFCofDJ80zw==
+  dependencies:
+    "@motionone/dom" "^10.16.2"
+    "@motionone/utils" "^10.15.1"
+    "@solid-primitives/props" "^3.1.1"
+    "@solid-primitives/refs" "^1.0.0"
+    "@solid-primitives/transition-group" "^1.0.0"
+
+"@motionone/types@^10.15.1":
+  version "10.15.1"
+  resolved "https://registry.npmjs.org/@motionone/types/-/types-10.15.1.tgz"
+  integrity sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==
+
+"@motionone/utils@^10.15.1":
+  version "10.15.1"
+  resolved "https://registry.npmjs.org/@motionone/utils/-/utils-10.15.1.tgz"
+  integrity sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==
+  dependencies:
+    "@motionone/types" "^10.15.1"
+    hey-listen "^1.0.8"
+    tslib "^2.3.1"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -565,7 +629,14 @@
   resolved "https://registry.npmjs.org/@solid-primitives/platform/-/platform-0.0.105.tgz"
   integrity sha512-GULqmMc5vNsLSsIxIEYYxJv/6ypGKG+ig9hzSi4lxVPfooX6Go6txDlhv53woUSvaG939ceZGRq+X5uADMed6g==
 
-"@solid-primitives/refs@^1.0.4":
+"@solid-primitives/props@^3.1.1":
+  version "3.1.6"
+  resolved "https://registry.npmjs.org/@solid-primitives/props/-/props-3.1.6.tgz"
+  integrity sha512-ChtvXBDxASR+zZgH0ysoBstbVJdqJk6LITb78CScgHd+Uc8C6eaHKLmhNeuVCd36FGAuyj9vylDHe2GhmFlecA==
+  dependencies:
+    "@solid-primitives/utils" "^6.2.0"
+
+"@solid-primitives/refs@^1.0.0", "@solid-primitives/refs@^1.0.4":
   version "1.0.4"
   resolved "https://registry.npmjs.org/@solid-primitives/refs/-/refs-1.0.4.tgz"
   integrity sha512-BxZKkct0OIyADWIoA9UITm+3G5Xb3IkOa0nZd40SgOK5DtMqpXFIEPUkJ/woPB90WqlM9UvvuiJHUyAjMeAmCw==
@@ -615,6 +686,11 @@
   dependencies:
     "@solid-primitives/rootless" "^1.3.2"
     "@solid-primitives/utils" "^6.0.0"
+
+"@solid-primitives/transition-group@^1.0.0":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@solid-primitives/transition-group/-/transition-group-1.0.2.tgz"
+  integrity sha512-+o3J7TnU0/Sok+LKA0z0wvhim88dpd2eFBk8/05adE6wVypVlME8sKqTMO+xRv8HoT4Kq3sczmvwV07FKg2n+g==
 
 "@solid-primitives/utils@^6.0.0", "@solid-primitives/utils@^6.2.0":
   version "6.2.0"
@@ -968,6 +1044,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hey-listen@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/hey-listen/-/hey-listen-1.0.8.tgz"
+  integrity sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
+
 html-entities@2.3.3:
   version "2.3.3"
   resolved "https://registry.npmjs.org/html-entities/-/html-entities-2.3.3.tgz"
@@ -1290,7 +1371,7 @@ solid-devtools@^0.27.3:
 
 solid-icons@^1.0.8:
   version "1.0.8"
-  resolved "https://registry.yarnpkg.com/solid-icons/-/solid-icons-1.0.8.tgz#9f3aaf47f1490aae7a257e23be64dc1d8fbbe0bf"
+  resolved "https://registry.npmjs.org/solid-icons/-/solid-icons-1.0.8.tgz"
   integrity sha512-7aQGNjM5ZAGlE25s4APE+2QEQUyltqsTuhfO0OhYZaH2wbY0ZAqL7qRQJPMN98qhoIfroYRNEi/0l7UJN902MA==
 
 solid-js@^1.7.5, solid-js@^1.7.6:
@@ -1399,6 +1480,11 @@ ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
+
+tslib@^2.3.1:
+  version "2.5.3"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.5.3.tgz"
+  integrity sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==
 
 type-fest@^3.11.1:
   version "3.12.0"

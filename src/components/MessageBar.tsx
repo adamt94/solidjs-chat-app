@@ -3,20 +3,16 @@ import { VsSend } from "solid-icons/vs";
 import Message from "./Message";
 
 interface MessageBarProps {
-  onSend: (message: Message) => void;
+  onSend: (message: string) => void;
 }
 
 export default function MessageBar(props: MessageBarProps) {
-  const [message, setMessage] = createSignal<Message>({
-    message: "",
-    username: "",
-  });
+  const [message, setMessage] = createSignal("");
 
   function handleSend() {
     if (message()) {
       props.onSend(message());
-
-      setMessage({ message: "", username: message().username });
+      setMessage("");
     }
   }
 
@@ -30,13 +26,8 @@ export default function MessageBar(props: MessageBarProps) {
         type="text"
         class="flex-1 surface-variant on-surface-variant-text p-2 rounded-2xl px-4 focus:primary-outline"
         placeholder="Send a message..."
-        value={message().message}
-        onInput={(e) =>
-          setMessage({
-            message: e.currentTarget.value,
-            username: message().username,
-          })
-        }
+        value={message()}
+        onInput={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleSend();

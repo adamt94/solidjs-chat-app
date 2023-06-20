@@ -34,12 +34,10 @@ const defaultMessages = [
 const App: Component = () => {
   const [messages, setMessages] = createSignal(defaultMessages);
   return (
-    <div class=" h-screen surface">
-      <div class="flex p-5">
-        <div class={`w-1/4`}>sidepanel</div>
-        <div class={`w-3/4`}>
-          <ChatPanel messages={messages()} username="John Doe" />
-        </div>
+    <div class="surface flex h-screen">
+      <div class={`w-1/4 surface-variant`}>sidepanel</div>
+      <div class={`w-3/4`}>
+        <ChatPanel messages={messages()} username="John Doe" />
       </div>
     </div>
   );

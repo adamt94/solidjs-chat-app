@@ -127,11 +127,17 @@
 .surface-variant {
   background-color: var(--md-sys-color-surface-variant);
 }
+.surface-variant-border {
+  border-color: var(--md-sys-color-surface-variant);
+}
 .surface-variant-text {
   color: var(--md-sys-color-surface-variant);
 }
 .on-surface-variant {
   background-color: var(--md-sys-color-on-surface-variant);
+}
+.on-surface-variant-border {
+  border-color: var(--md-sys-color-on-surface-variant);
 }
 .on-surface-variant-text {
   color: var(--md-sys-color-on-surface-variant);
@@ -163,6 +169,9 @@
 .shadow {
   background-color: var(--md-sys-color-shadow);
 }
+.shadow-border {
+  border-color: var(--md-sys-color-shadow);
+}
 .shadow-text {
   color: var(--md-sys-color-shadow);
 }
@@ -174,6 +183,9 @@
 }
 .outline-variant {
   background-color: var(--md-sys-color-outline-variant);
+}
+.outline-variant-border {
+  border-color: var(--md-sys-color-outline-variant);
 }
 .outline-variant-text {
   color: var(--md-sys-color-outline-variant);

@@ -5,27 +5,35 @@ interface Message {
   message: string;
   sent?: boolean;
   timestamp?: string;
+  hideUsername?: boolean;
 }
 
-
 const Message = (props: Message) => {
-  const [username] = createSignal(props.username);
-  const [message] = createSignal(props.message);
-  const [sent] = createSignal(props.sent);
+  const { username, message, sent, hideUsername, timestamp } = props;
 
-  const sentClass = sent()
+  console.log(timestamp);
+
+  const sentClass = sent
     ? "on-primary-container-text primary-container"
     : "on-primary-text primary";
-  const alignClass = sent() ? "sent text-left" : "received text-right";
+  const textAlignmentClass = sent ? "sent text-left" : "received text-right";
+  const messageGapClass = hideUsername ? "mb-1" : "my-2";
 
   return (
-    <div class={`${alignClass}`}>
-      <div class="label-medium font-bold primary-text">
-        {sent() && username()}
+    <div class={`${textAlignmentClass} ${messageGapClass} `}>
+      {!hideUsername && (
+        <div class="label-medium font-bold primary-text">
+          {sent && username}
+        </div>
+      )}
+      <div
+        class={`relative py-2 px-4  pr-14 rounded-2xl inline-block ${sentClass}`}
+      >
+        <p class={`label-large`}>{message}</p>
+        <div class="label-small absolute bottom-1 right-3">
+          {timestamp && <span class="primary-text">{timestamp}</span>}
+        </div>
       </div>
-      <p class={`p-2 px-4 rounded-2xl inline-block ${sentClass} label-large`}>
-        {message()}
-      </p>
     </div>
   );
 };
