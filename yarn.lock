@@ -1288,6 +1288,11 @@ solid-devtools@^0.27.3:
     "@solid-devtools/debugger" "^0.22.1"
     "@solid-devtools/shared" "^0.12.0"
 
+solid-icons@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/solid-icons/-/solid-icons-1.0.8.tgz#9f3aaf47f1490aae7a257e23be64dc1d8fbbe0bf"
+  integrity sha512-7aQGNjM5ZAGlE25s4APE+2QEQUyltqsTuhfO0OhYZaH2wbY0ZAqL7qRQJPMN98qhoIfroYRNEi/0l7UJN902MA==
+
 solid-js@^1.7.5, solid-js@^1.7.6:
   version "1.7.6"
   resolved "https://registry.npmjs.org/solid-js/-/solid-js-1.7.6.tgz"

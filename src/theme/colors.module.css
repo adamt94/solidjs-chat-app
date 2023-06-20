@@ -1,6 +1,9 @@
 .primary {
   background-color: var(--md-sys-color-primary);
 }
+.focus\:primary-outline:focus {
+  outline-color: var(--md-sys-color-primary);
+}
 .primary-text {
   color: var(--md-sys-color-primary);
 }
@@ -12,6 +15,9 @@
 }
 .primary-container {
   background-color: var(--md-sys-color-primary-container);
+}
+.focus\:primary-container-outline:focus {
+  outline-color: var(--md-sys-color-primary-container);
 }
 .primary-container-text {
   color: var(--md-sys-color-primary-container);
