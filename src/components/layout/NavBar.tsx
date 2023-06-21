@@ -8,7 +8,7 @@ interface NavItem {
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav class=" border-l-2 outline-variant-border">
       <ContactInfo
         heading="New Movie! Expendables 4"
         subheading="Andrés, Tom, Harrison, Arnold, Sylvester"

@@ -1,4 +1,11 @@
 import { Component } from "solid-js";
+import Message from "./Message";
+
+export type Contact = {
+  name: string;
+  profilePicture: string;
+  messages: Message[];
+};
 
 interface ContactInfo {
   heading: string;
@@ -10,7 +17,7 @@ interface ContactInfo {
 const ContactInfo = (props: ContactInfo) => {
   const { heading, subheading, image } = props;
   return (
-    <nav class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center surface-variant border-l-2 outline-variant-border">
+    <nav class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center surface-variant">
       <div class="flex items-center">
         <div>
           <img class="w-10 h-10 rounded-full" src={image} />
