@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@motionone/solid": "^10.16.2",
+    "solid-emoji-picker": "^0.2.0",
     "solid-icons": "^1.0.8",
     "solid-js": "^1.7.6"
   }

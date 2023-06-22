@@ -1,10 +1,10 @@
-import { For, createSignal } from 'solid-js';
-import Message from '../Message';
-import MessageBar from "../MessageBar";
+import { For } from "solid-js";
+import Message from "./Message";
+import MessageBar from "./MessageBar";
 import { Motion } from "@motionone/solid";
-import { getFormattedTimestamp } from "../../util/getFormattedTime";
-import NavBar from "./NavBar";
-import { Contact } from "../ContactInfo";
+import { getFormattedTimestamp } from "../../../util/getFormattedTime";
+import NavBar from "../NavBar";
+import { Contact } from "../../ContactInfo";
 
 interface MessageListProps {
   username: string;
@@ -23,7 +23,7 @@ export default function ChatPanel(props: MessageListProps) {
   };
 
   return (
-    <div class="flex flex-col h-full">
+    <div class="flex flex-col h-full relative">
       <NavBar heading="last seen 1 minute ago" title={props.username} icon="" />
       <div class="flex flex-col flex-grow overflow-y-auto">
         <div class="flex-grow overflow-auto flex flex-col-reverse">
@@ -61,4 +61,4 @@ export default function ChatPanel(props: MessageListProps) {
       </div>
     </div>
   );
-};
+}

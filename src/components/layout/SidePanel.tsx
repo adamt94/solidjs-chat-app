@@ -36,7 +36,7 @@ export default function SidePanel(props: SidePanelProps) {
               }
               image={contact.profilePicture}
             />
-            <div class=" ml-12 w-full my-1 h-1 border-b-2 on-surface-variant opacity-20"></div>
+            <div class=" ml-12 w-full my-1 h-1 border-b-2 on-surface-variant opacity-20" />
           </div>
         )}
       </For>

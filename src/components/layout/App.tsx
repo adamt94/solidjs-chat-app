@@ -2,10 +2,10 @@ import { createSignal, type Component } from "solid-js";
 
 import logo from "../../logo.svg";
 import styles from "./App.module.css";
-import ChatPanel from "./ChatPanel";
+import ChatPanel from "./ChatPanel/ChatPanel";
 import SidePanel from "./SidePanel";
 import { Contact } from "../ContactInfo";
-import Message from "../Message";
+import Message from "./ChatPanel/Message";
 
 const defaultMessages = [
   {

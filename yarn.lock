@@ -1369,6 +1369,11 @@ solid-devtools@^0.27.3:
     "@solid-devtools/debugger" "^0.22.1"
     "@solid-devtools/shared" "^0.12.0"
 
+solid-emoji-picker@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/solid-emoji-picker/-/solid-emoji-picker-0.2.0.tgz#1f7d85116f4ad5eaba01423c44e37f4c069c01ec"
+  integrity sha512-cLPevMIevKPs06UOjFakYP+TXKFcvwhD0cF9d3ivrqXUIOt/0bgXHnxPQlbFXtOr6mYXVngrNhzHBGdNi1fVNQ==
+
 solid-icons@^1.0.8:
   version "1.0.8"
   resolved "https://registry.npmjs.org/solid-icons/-/solid-icons-1.0.8.tgz"
