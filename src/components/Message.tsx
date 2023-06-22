@@ -8,9 +8,6 @@ interface Message {
 
 const Message = (props: Message) => {
   const { username, message, sent, hideUsername, timestamp } = props;
-
-  console.log(timestamp);
-
   const sentClass = sent
     ? "on-primary-container-text primary-container"
     : "on-primary-text primary";

@@ -1,6 +1,6 @@
 :root {
   --md-source: #ABDAE1;
-  /* primary */
+
   --md-ref-palette-primary0: #000000;
   --md-ref-palette-primary10: #001f23;
   --md-ref-palette-primary20: #00363c;
@@ -131,6 +131,7 @@
   --md-sys-color-inverse-primary-light: #4ed8e9;
   --md-sys-color-shadow-light: #000000;
   --md-sys-color-surface-tint-light: #006972;
+  --md-sys-color-surface-tint-light-rgb: 0, 105, 114;
   --md-sys-color-outline-variant-light: #bec8ca;
   --md-sys-color-scrim-light: #000000;
   /* dark */
@@ -162,6 +163,7 @@
   --md-sys-color-inverse-primary-dark: #006972;
   --md-sys-color-shadow-dark: #000000;
   --md-sys-color-surface-tint-dark: #4ed8e9;
+  --md-sys-color-surface-tint-dark-rgb: 78, 216, 233;
   --md-sys-color-outline-variant-dark: #3f484a;
   --md-sys-color-scrim-dark: #000000;
   /* display - large */
