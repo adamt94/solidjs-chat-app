@@ -6,13 +6,13 @@ interface NavItem {
   heading: string;
 }
 
-const NavBar = () => {
+const NavBar = (props: NavItem) => {
   return (
     <nav class=" border-l-2 outline-variant-border surface-variant">
       <ContactInfo
-        heading="New Movie! Expendables 4"
-        subheading="Andrés, Tom, Harrison, Arnold, Sylvester"
-        image="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"
+        heading={props.title}
+        subheading={props.heading}
+        image={props.icon}
       >
         <div class="flex">
           <div>

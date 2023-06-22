@@ -55,16 +55,16 @@ const contacts = [
 
 const App: Component = () => {
   const [selectedContact, setSelectedContact] = createSignal(contacts[0]);
-  const [messages, setMessages] = createSignal(selectedContact().messages);
-  const [username, setUsername] = createSignal("John Doe");
+  const [username] = createSignal("John Doe");
 
   const onSelectContact = (contact: Contact) => {
     setSelectedContact(contact);
-    setMessages(contact.messages);
   };
 
   const sendMessage = (message: Message) => {
-    setMessages([...messages(), message]);
+    const contact = selectedContact();
+    const messages = contact.messages;
+    setSelectedContact({ ...contact, messages: [...messages, message] });
   };
 
   return (
@@ -74,7 +74,7 @@ const App: Component = () => {
       </div>
       <div class={`w-3/4`}>
         <ChatPanel
-          messages={messages()}
+          contact={selectedContact()}
           sendMessage={sendMessage}
           username={username()}
         />

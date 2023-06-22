@@ -11,15 +11,13 @@ const Message = (props: Message) => {
   const sentClass = sent
     ? "on-primary-container-text primary-container"
     : "on-primary-text primary";
-  const textAlignmentClass = sent ? "sent text-left" : "received text-right";
+  const textAlignmentClass = sent ? "sent text-right" : "received text-left";
   const messageGapClass = hideUsername ? "mb-1" : "my-2";
 
   return (
     <div class={`${textAlignmentClass} ${messageGapClass} `}>
-      {!hideUsername && (
-        <div class="label-medium font-bold primary-text">
-          {sent && username}
-        </div>
+      {hideUsername && (
+        <div class="label-medium font-bold primary-text">{username}</div>
       )}
       <div
         class={`relative py-2 px-4  pr-14 rounded-2xl inline-block ${sentClass}`}
