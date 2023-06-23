@@ -10,7 +10,7 @@ const Message = (props: Message) => {
   const { username, message, sent, hideUsername, timestamp } = props;
   const sentClass = sent
     ? "on-primary-container-text primary-container"
-    : "on-primary-text primary";
+    : "on-surface-text surface-tint-5";
   const textAlignmentClass = sent ? "sent text-right" : "received text-left";
   const messageGapClass = hideUsername ? "mb-1" : "my-2";
 

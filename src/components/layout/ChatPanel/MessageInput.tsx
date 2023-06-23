@@ -4,12 +4,13 @@ import { VsSend } from "solid-icons/vs";
 import { HiOutlineFaceSmile } from "solid-icons/hi";
 import EmojiPanel from "./EmojiPanel/EmojiPanel";
 import { Emoji } from "solid-emoji-picker";
+import IconButton from "../../ui/IconButton";
 
-interface MessageBarProps {
+interface MessageInputProps {
   onSend: (message: string) => void;
 }
 
-function MessageBar(props: MessageBarProps) {
+function MessageInput(props: MessageInputProps) {
   const [message, setMessage] = createSignal("");
   const [showEmojiPanel, setShowEmojiPanel] = createSignal(false);
   let inputRef: HTMLInputElement | undefined;
@@ -49,15 +50,13 @@ function MessageBar(props: MessageBarProps) {
 
   return (
     <div class="flex items-center">
-      <button class="p-2" onClick={onClickEmojiIcon}>
-        <div class="rounded-full hover:surface-tint-1">
-          <HiOutlineFaceSmile class="primary-text headline-medium" />
-        </div>
-      </button>
+      <IconButton label={"emoji"} onClick={onClickEmojiIcon}>
+        <HiOutlineFaceSmile class="primary-text headline-medium" />
+      </IconButton>
       <input
         ref={inputRef}
         type="text"
-        class="flex-1 surface-variant on-surface-variant-text p-2 rounded-2xl px-4 focus:primary-outline"
+        class="flex-1 surface-tint-1 on-surface-text p-2 rounded-2xl px-4 outline-none surface-text-placeholder"
         placeholder="Send a message..."
         value={message()}
         onInput={(e) => setMessage(e.target.value)}
@@ -67,9 +66,9 @@ function MessageBar(props: MessageBarProps) {
           }
         }}
       />
-      <button class="p-2" onClick={messageSend}>
+      <IconButton label={"send message"} onClick={messageSend}>
         <VsSend class="primary-text title-large" />
-      </button>
+      </IconButton>
       <div ref={emojiPanelRef}>
         <Show when={showEmojiPanel()}>
           <EmojiPanel onEmojiSelect={handleEmojiSelect} />
@@ -78,4 +77,4 @@ function MessageBar(props: MessageBarProps) {
     </div>
   );
 }
-export default MessageBar;
+export default MessageInput;

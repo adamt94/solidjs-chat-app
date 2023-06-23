@@ -1,11 +1,10 @@
 import { createSignal, type Component } from "solid-js";
 
-import logo from "../../logo.svg";
-import styles from "./App.module.css";
-import ChatPanel from "./ChatPanel/ChatPanel";
-import SidePanel from "./SidePanel";
-import { Contact } from "../ContactInfo";
-import Message from "./ChatPanel/Message";
+import logo from "../../../logo.svg";
+import ChatPanel from "../ChatPanel/ChatPanel";
+import SidePanel from "../SidePanel/SidePanel";
+import { Contact } from "../../ContactInfo";
+import Message from "../ChatPanel/Message";
 
 const defaultMessages = [
   {
@@ -69,7 +68,7 @@ const App: Component = () => {
 
   return (
     <div class="surface flex h-screen">
-      <div class={`w-1/4 surface-variant`}>
+      <div class={`w-1/4`}>
         <SidePanel contacts={contacts} onSelectContact={onSelectContact} />
       </div>
       <div class={`w-3/4`}>

@@ -1,9 +1,9 @@
 import { For } from "solid-js";
 import Message from "./Message";
-import MessageBar from "./MessageBar";
+import MessageInput from "./MessageInput";
 import { Motion } from "@motionone/solid";
 import { getFormattedTimestamp } from "../../../util/getFormattedTime";
-import NavBar from "../NavBar";
+import NavBar from "./NavBar";
 import { Contact } from "../../ContactInfo";
 
 interface MessageListProps {
@@ -23,7 +23,7 @@ export default function ChatPanel(props: MessageListProps) {
   };
 
   return (
-    <div class="flex flex-col h-full relative">
+    <div class="flex flex-col h-full relative surface">
       <NavBar heading="last seen 1 minute ago" title={props.username} icon="" />
       <div class="flex flex-col flex-grow overflow-y-auto">
         <div class="flex-grow overflow-auto flex flex-col-reverse">
@@ -55,8 +55,8 @@ export default function ChatPanel(props: MessageListProps) {
           </div>
         </div>
 
-        <div class="flex-shrink p-2">
-          <MessageBar onSend={onSend()} />
+        <div class="flex-shrink p-2 surface-tint-2">
+          <MessageInput onSend={onSend()} />
         </div>
       </div>
     </div>
