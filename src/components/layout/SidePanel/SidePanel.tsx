@@ -1,8 +1,6 @@
 import { For, createSignal } from "solid-js";
 import ContactInfo, { Contact } from "../../ContactInfo";
 import NavBar from "./NavBar";
-import IconButton from "../../ui/IconButton";
-import { FiMenu } from "solid-icons/fi";
 
 interface SidePanelProps {
   contacts: Contact[];
@@ -10,16 +8,15 @@ interface SidePanelProps {
 }
 
 export default function SidePanel(props: SidePanelProps) {
-  const { contacts, onSelectContact } = props;
   const [selectedContact, setSelectedContact] = createSignal<Contact | null>(
-    contacts[0]
+    props.contacts[0]
   );
 
   return (
     <div class="flex flex-col h-full overflow-hidden">
-      <NavBar heading="" title="" icon="whatsapp" />
+      <NavBar heading="" title="" icon="" />
       <div class="surface-tint-1 h-full">
-        <For each={contacts} fallback={<div>No contacts yet.</div>}>
+        <For each={props.contacts} fallback={<div>No contacts yet.</div>}>
           {(contact) => (
             <div
               class={`${
@@ -27,7 +24,7 @@ export default function SidePanel(props: SidePanelProps) {
               } cursor-pointer`}
               onClick={() => {
                 setSelectedContact(contact);
-                onSelectContact(contact);
+                props.onSelectContact(contact);
               }}
             >
               <ContactInfo

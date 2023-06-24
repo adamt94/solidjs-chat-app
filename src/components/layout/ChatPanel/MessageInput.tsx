@@ -5,6 +5,7 @@ import { HiOutlineFaceSmile } from "solid-icons/hi";
 import EmojiPanel from "./EmojiPanel/EmojiPanel";
 import { Emoji } from "solid-emoji-picker";
 import IconButton from "../../ui/IconButton";
+import { Motion, Presence } from "@motionone/solid";
 
 interface MessageInputProps {
   onSend: (message: string) => void;
@@ -69,10 +70,19 @@ function MessageInput(props: MessageInputProps) {
       <IconButton label={"send message"} onClick={messageSend}>
         <VsSend class="primary-text title-large" />
       </IconButton>
-      <div ref={emojiPanelRef}>
-        <Show when={showEmojiPanel()}>
-          <EmojiPanel onEmojiSelect={handleEmojiSelect} />
-        </Show>
+      <div class="absolute" ref={emojiPanelRef}>
+        <Presence exitBeforeEnter>
+          <Show when={showEmojiPanel()}>
+            <Motion.div
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.6 }}
+              transition={{ duration: 0.3 }}
+            >
+              <EmojiPanel onEmojiSelect={handleEmojiSelect} />
+            </Motion.div>
+          </Show>
+        </Presence>
       </div>
     </div>
   );

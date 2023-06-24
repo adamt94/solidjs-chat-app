@@ -33,7 +33,7 @@ const defaultMessages = [
   },
 ];
 
-const contacts = [
+const initialContacts = [
   {
     name: "Jane Doe",
     profilePicture:
@@ -43,7 +43,7 @@ const contacts = [
   {
     name: "Fred Salmon",
     profilePicture: logo,
-    messages: [],
+    messages: [{ username: "Fred Salmon", message: "Hello world!" }],
   },
   {
     name: "Simon Salmon",
@@ -53,7 +53,10 @@ const contacts = [
 ];
 
 const App: Component = () => {
-  const [selectedContact, setSelectedContact] = createSignal(contacts[0]);
+  const [selectedContact, setSelectedContact] = createSignal(
+    initialContacts[0]
+  );
+  const [contacts, setContacts] = createSignal(initialContacts);
   const [username] = createSignal("John Doe");
 
   const onSelectContact = (contact: Contact) => {
@@ -63,13 +66,17 @@ const App: Component = () => {
   const sendMessage = (message: Message) => {
     const contact = selectedContact();
     const messages = contact.messages;
-    setSelectedContact({ ...contact, messages: [...messages, message] });
+    const updatedContact = { ...contact, messages: [...messages, message] };
+    setSelectedContact(updatedContact);
+    setContacts(
+      contacts().map((c) => (c.name === contact.name ? updatedContact : c))
+    );
   };
 
   return (
     <div class="surface flex h-screen">
       <div class={`w-1/4`}>
-        <SidePanel contacts={contacts} onSelectContact={onSelectContact} />
+        <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
       </div>
       <div class={`w-3/4`}>
         <ChatPanel

@@ -8,7 +8,7 @@ interface NavItem {
 
 const NavBar = (props: NavItem) => {
   return (
-    <nav class=" border-l-2 outline-variant-border surface-tint-2 h-16">
+    <nav class="border-l-2 outline-variant-border surface-tint-2 h-16">
       <ContactInfo
         heading={props.title}
         subheading={props.heading}
