@@ -10,26 +10,32 @@ const defaultMessages = [
   {
     username: "John Doe",
     message: "Hello world!",
+    timestamp: new Date(new Date().getTime() - 48 * 60 * 60 * 1000),
   },
   {
     username: "Jane Doe",
     message: "Hi, John!",
+    timestamp: new Date(new Date().getTime() - 4 * 60 * 60 * 1000),
   },
   {
     username: "John Doe",
     message: "How are you?",
+    timestamp: new Date(new Date().getTime() - 4 * 60 * 60 * 1000),
   },
   {
     username: "Jane Doe",
     message: "I'm fine, thanks!",
+    timestamp: new Date(new Date().getTime() - 4 * 59 * 60 * 1000),
   },
   {
     username: "John Doe",
     message: "Good to hear!",
+    timestamp: new Date(new Date().getTime() - 4 * 58 * 60 * 1000),
   },
   {
     username: "Jane Doe",
     message: "Goodbye!",
+    timestamp: new Date(new Date().getTime() - 4 * 55 * 60 * 1000),
   },
 ];
 

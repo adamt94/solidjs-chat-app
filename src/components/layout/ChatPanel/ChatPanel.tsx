@@ -5,6 +5,7 @@ import { Motion } from "@motionone/solid";
 import { getFormattedTimestamp } from "../../../util/getFormattedTime";
 import NavBar from "./NavBar";
 import { Contact } from "../../ContactInfo";
+import DateMessage from "./DateMessage";
 
 interface MessageListProps {
   username: string;
@@ -13,15 +14,14 @@ interface MessageListProps {
 }
 
 export default function ChatPanel(props: MessageListProps) {
+  let currentDay: Date | null = null;
   const onSend = () => (message: string) => {
-    const MessageTime = getFormattedTimestamp(Date.now());
     props.sendMessage({
       username: props.username,
       message,
-      timestamp: MessageTime,
+      timestamp: new Date(),
     });
   };
-
 
   return (
     <div class="flex flex-col h-full relative surface">
@@ -33,29 +33,49 @@ export default function ChatPanel(props: MessageListProps) {
       <div class="flex flex-col flex-grow overflow-y-auto">
         <div class="flex-grow overflow-auto flex flex-col-reverse">
           <div class="flex flex-col p-2">
+            <div class="text-center"></div>
             <For
               each={props.contact.messages}
-              fallback={<div>No messages yet.</div>}
+              fallback={<div>No messages yet. </div>}
             >
-              {(message, index) => (
-                <Motion.div
-                  animate={{
-                    opacity:
-                      index() === props.contact.messages.length - 1
-                        ? [0, 1]
-                        : 1,
-                  }}
-                  transition={{ duration: 0.5, easing: "ease-in-out" }}
-                >
-                  <Message
-                    username={message.username}
-                    hideUsername={message.username !== props.username}
-                    timestamp={message.timestamp}
-                    message={message.message}
-                    sent={message.username === props.username}
-                  />
-                </Motion.div>
-              )}
+              {(message, index) => {
+                const timestamp = message.timestamp || new Date();
+                const messageDay = new Date(
+                  timestamp.getFullYear(),
+                  timestamp.getMonth(),
+                  timestamp.getDate()
+                );
+                const shouldRenderDateMessage =
+                  currentDay === null || messageDay > currentDay;
+                currentDay = messageDay;
+
+                return (
+                  <>
+                    {shouldRenderDateMessage && (
+                      <div class="text-center">
+                        <DateMessage date={timestamp} />
+                      </div>
+                    )}
+                    <Motion.div
+                      animate={{
+                        opacity:
+                          index() === props.contact.messages.length - 1
+                            ? [0, 1]
+                            : 1,
+                      }}
+                      transition={{ duration: 0.5, easing: "ease-in-out" }}
+                    >
+                      <Message
+                        username={message.username}
+                        hideUsername={message.username !== props.username}
+                        timestamp={message.timestamp}
+                        message={message.message}
+                        sent={message.username === props.username}
+                      />
+                    </Motion.div>
+                  </>
+                );
+              }}
             </For>
           </div>
         </div>
