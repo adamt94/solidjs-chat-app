@@ -4,19 +4,17 @@ interface DateMessageProps {
 
 const DateMessage = (props: DateMessageProps) => {
   const now = new Date();
-  const isCurrentWeek =
-    props.date >=
-      new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() - now.getDay()
-      ) &&
-    props.date <
-      new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + (7 - now.getDay())
-      );
+  const startOfWeek = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() - now.getDay()
+  );
+  const endOfWeek = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + (6 - now.getDay())
+  );
+  const isCurrentWeek = props.date >= startOfWeek && props.date <= endOfWeek;
 
   const formattedDate = isCurrentWeek
     ? props.date.toLocaleDateString("en-US", { weekday: "long" })

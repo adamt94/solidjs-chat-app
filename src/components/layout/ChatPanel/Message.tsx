@@ -2,7 +2,7 @@ import { getFormattedTimestamp } from "../../../util/getFormattedTime";
 
 interface Message {
   username: string;
-  message: string;
+  text: string;
   sent?: boolean;
   timestamp?: Date;
   hideUsername?: boolean;
@@ -25,7 +25,7 @@ const Message = (props: Message) => {
       <div
         class={`relative py-2 px-4  pr-14 rounded-2xl inline-block ${sentClass}`}
       >
-        <p class={`label-large break-words`}>{props.message}</p>
+        <p class={`label-large break-words`}>{props.text}</p>
         <div class="label-small absolute bottom-1 right-3">
           {props.timestamp && (
             <span class="primary-text">

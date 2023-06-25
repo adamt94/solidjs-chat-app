@@ -1,4 +1,3 @@
-import { Component } from "solid-js";
 import Message from "./layout/ChatPanel/Message";
 
 export type Contact = {

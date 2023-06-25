@@ -8,7 +8,7 @@ import IconButton from "../../ui/IconButton";
 import { Motion, Presence } from "@motionone/solid";
 
 interface MessageInputProps {
-  onSend: (message: string) => void;
+  onSend: (text: string) => void;
 }
 
 function MessageInput(props: MessageInputProps) {

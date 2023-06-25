@@ -31,7 +31,7 @@ export default function SidePanel(props: SidePanelProps) {
                 heading={contact.name}
                 subheading={
                   contact.messages.length > 0
-                    ? contact.messages[contact.messages.length - 1].message
+                    ? contact.messages[contact.messages.length - 1].text
                     : "No messages"
                 }
                 image={contact.profilePicture}

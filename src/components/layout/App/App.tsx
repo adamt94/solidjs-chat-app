@@ -3,39 +3,39 @@ import { createSignal, type Component } from "solid-js";
 import logo from "../../../logo.svg";
 import ChatPanel from "../ChatPanel/ChatPanel";
 import SidePanel from "../SidePanel/SidePanel";
-import { Contact } from "../../ContactInfo";
 import Message from "../ChatPanel/Message";
+import { Contact } from "../../ContactInfo";
 
 const defaultMessages = [
   {
     username: "John Doe",
-    message: "Hello world!",
+    text: "Hello world!",
     timestamp: new Date(new Date().getTime() - 48 * 60 * 60 * 1000),
   },
   {
     username: "Jane Doe",
-    message: "Hi, John!",
+    text: "Hi, John!",
     timestamp: new Date(new Date().getTime() - 4 * 60 * 60 * 1000),
   },
   {
     username: "John Doe",
-    message: "How are you?",
+    text: "How are you?",
     timestamp: new Date(new Date().getTime() - 4 * 60 * 60 * 1000),
   },
   {
     username: "Jane Doe",
-    message: "I'm fine, thanks!",
+    text: "I'm fine, thanks!",
     timestamp: new Date(new Date().getTime() - 4 * 59 * 60 * 1000),
   },
   {
     username: "John Doe",
-    message: "Good to hear!",
+    text: "Good to hear!",
     timestamp: new Date(new Date().getTime() - 4 * 58 * 60 * 1000),
   },
   {
     username: "Jane Doe",
-    message: "Goodbye!",
-    timestamp: new Date(new Date().getTime() - 4 * 55 * 60 * 1000),
+    text: "Goodbye!",
+    timestamp: new Date(new Date().getTime() - 1 * 55 * 60 * 1000),
   },
 ];
 
@@ -49,7 +49,7 @@ const initialContacts = [
   {
     name: "Fred Salmon",
     profilePicture: logo,
-    messages: [{ username: "Fred Salmon", message: "Hello world!" }],
+    messages: [{ username: "Fred Salmon", text: "Hello world!" }],
   },
   {
     name: "Simon Salmon",
@@ -59,10 +59,12 @@ const initialContacts = [
 ];
 
 const App: Component = () => {
-  const [selectedContact, setSelectedContact] = createSignal(
-    initialContacts[0]
+  const [selectedContact, setSelectedContact] = createSignal<Contact>(
+    initialContacts[0] as unknown as Contact
   );
-  const [contacts, setContacts] = createSignal(initialContacts);
+  const [contacts, setContacts] = createSignal<Contact[]>(
+    initialContacts as unknown as Contact[]
+  );
   const [username] = createSignal("John Doe");
 
   const onSelectContact = (contact: Contact) => {
@@ -72,7 +74,10 @@ const App: Component = () => {
   const sendMessage = (message: Message) => {
     const contact = selectedContact();
     const messages = contact.messages;
-    const updatedContact = { ...contact, messages: [...messages, message] };
+    const updatedContact = {
+      ...contact,
+      messages: [...messages, message],
+    } as Contact;
     setSelectedContact(updatedContact);
     setContacts(
       contacts().map((c) => (c.name === contact.name ? updatedContact : c))
@@ -81,10 +86,10 @@ const App: Component = () => {
 
   return (
     <div class="surface flex h-screen">
-      <div class={`w-1/4`}>
+      <div class={`w-2/6`}>
         <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
       </div>
-      <div class={`w-3/4`}>
+      <div class={`w-4/6`}>
         <ChatPanel
           contact={selectedContact()}
           sendMessage={sendMessage}
