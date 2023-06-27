@@ -50,7 +50,11 @@ export default function ChatPanel(props: MessageListProps) {
             <div class="text-center"></div>
             <For
               each={props.contact.messages}
-              fallback={<div>No messages yet. </div>}
+              fallback={
+                <div class="text-center">
+                  <DateMessage date={new Date()} />
+                </div>
+              }
             >
               {(message, index) => {
                 const timestamp = message.timestamp || new Date();
