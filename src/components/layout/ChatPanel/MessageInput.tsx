@@ -7,6 +7,8 @@ import { Emoji } from "solid-emoji-picker";
 import IconButton from "../../ui/IconButton";
 import { Motion, Presence } from "@motionone/solid";
 
+import { RiEditorAttachment2 } from "solid-icons/ri";
+
 interface MessageInputProps {
   onSend: (text: string) => void;
 }
@@ -51,6 +53,9 @@ function MessageInput(props: MessageInputProps) {
 
   return (
     <div class="flex items-center">
+      <IconButton label={"attach image"} onClick={() => {}}>
+        <RiEditorAttachment2 class="primary-text headline-small" />
+      </IconButton>
       <IconButton label={"emoji"} onClick={onClickEmojiIcon}>
         <HiOutlineFaceSmile class="primary-text headline-medium" />
       </IconButton>
