@@ -7,13 +7,14 @@ interface NavItem {
   title: string;
   icon: string;
   heading: string;
+  onClick: () => void;
 }
 
 const NavBar = (props: NavItem) => {
   return (
     <nav class=" py-2 px-1 flex surface-tint-2 flex-row justify-between items-center h-16">
       <div class="flex items-center">
-        <IconButton label="New chat" onClick={() => {}}>
+        <IconButton label="New chat" onClick={props.onClick}>
           <FiMenu class=" headline-small primary-text" />
         </IconButton>
       </div>
