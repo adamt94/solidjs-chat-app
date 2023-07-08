@@ -15,7 +15,7 @@ interface ContactInfo {
 
 const ContactInfo = (props: ContactInfo) => {
   return (
-    <nav class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
+    <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
       <div class="flex items-center">
         <img
           class="w-10 h-10 rounded-full"
@@ -30,7 +30,7 @@ const ContactInfo = (props: ContactInfo) => {
         </div>
       </div>
       <div class="flex">{props.children}</div>
-    </nav>
+    </div>
   );
 };
 
