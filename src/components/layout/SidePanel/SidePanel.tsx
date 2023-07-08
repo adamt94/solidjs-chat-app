@@ -16,12 +16,17 @@ export default function SidePanel(props: SidePanelProps) {
   const [expandedState, setExpandedState] = createSignal(true);
 
   return (
-    <Motion.aside class="flex flex-col h-full overflow-hidden">
+    <Motion.aside
+      class={`flex flex-col h-full overflow-hidden ${
+        expandedState() ? "w-2/6" : ""
+      }`}
+    >
       <NavBar
         onClick={() => setExpandedState(!expandedState())}
         heading=""
         title=""
         icon=""
+        mobileLayout={expandedState()}
       />
 
       <div class="surface-tint-1 h-full">
@@ -58,7 +63,7 @@ export default function SidePanel(props: SidePanelProps) {
                 <div
                   class={`${
                     selectedContact() === contact ? "surface-tint-1" : ""
-                  } cursor-pointer p-2`}
+                  } cursor-pointer p-2 py-3`}
                   onClick={() => {
                     setSelectedContact(contact);
                     props.onSelectContact(contact);

@@ -86,10 +86,8 @@ const App: Component = () => {
 
   return (
     <div class="surface flex h-screen">
-      <div class={`w-2/6`}>
-        <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
-      </div>
-      <div class={`w-4/6`}>
+      <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
+      <div class={`w-full`}>
         <ChatPanel
           contact={selectedContact()}
           sendMessage={sendMessage}
