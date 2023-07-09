@@ -4,7 +4,7 @@ import MessageInput from "./MessageInput";
 import { Motion } from "@motionone/solid";
 import { AiOutlineArrowDown } from "solid-icons/ai";
 import NavBar from "./NavBar";
-import { Contact } from "../../ContactInfo";
+import { Contact } from "../../ui/ContactInfo";
 import DateMessage from "./DateMessage";
 import IconButton from "../../ui/IconButton";
 

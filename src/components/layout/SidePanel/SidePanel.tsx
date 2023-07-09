@@ -1,5 +1,5 @@
 import { For, Switch, Match, createSignal } from "solid-js";
-import ContactInfo, { Contact } from "../../ContactInfo";
+import ContactInfo, { Contact } from "../../ui/ContactInfo";
 import NavBar from "./NavBar";
 import { Motion, Presence } from "@motionone/solid";
 

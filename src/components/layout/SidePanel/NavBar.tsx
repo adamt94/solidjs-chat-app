@@ -1,5 +1,5 @@
 import { FiMenu } from "solid-icons/fi";
-import ContactInfo from "../../ContactInfo";
+import ContactInfo from "../../ui/ContactInfo";
 import IconButton from "../../ui/IconButton";
 import { BsPencilSquare } from "solid-icons/bs";
 import { Match, Switch } from "solid-js";

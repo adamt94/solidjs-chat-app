@@ -4,7 +4,7 @@ import logo from "../../../logo.svg";
 import ChatPanel from "../ChatPanel/ChatPanel";
 import SidePanel from "../SidePanel/SidePanel";
 import Message from "../ChatPanel/Message";
-import { Contact } from "../../ContactInfo";
+import { Contact } from "../../ui/ContactInfo";
 
 const defaultMessages = [
   {

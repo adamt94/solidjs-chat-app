@@ -1,4 +1,4 @@
-import ContactInfo from "../../ContactInfo";
+import ContactInfo from "../../ui/ContactInfo";
 
 interface NavItem {
   title: string;

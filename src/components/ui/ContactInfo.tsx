@@ -1,4 +1,4 @@
-import Message from "./layout/ChatPanel/Message";
+import Message from "../layout/ChatPanel/Message";
 
 export type Contact = {
   name: string;
