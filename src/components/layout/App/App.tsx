@@ -5,6 +5,7 @@ import ChatPanel from "../ChatPanel/ChatPanel";
 import SidePanel from "../SidePanel/SidePanel";
 import Message from "../ChatPanel/Message";
 import { Contact } from "../../ui/ContactInfo";
+import Contacts from "../SidePanel/Contacts";
 
 const defaultMessages = [
   {
@@ -85,14 +86,17 @@ const App: Component = () => {
   };
 
   return (
-    <div class="surface flex h-screen">
-      <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
-      <div class={`w-full`}>
-        <ChatPanel
-          contact={selectedContact()}
-          sendMessage={sendMessage}
-          username={username()}
-        />
+    <div>
+      <div class="surface flex h-screen relative">
+        <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
+
+        <div class={`w-full`}>
+          <ChatPanel
+            contact={selectedContact()}
+            sendMessage={sendMessage}
+            username={username()}
+          />
+        </div>
       </div>
     </div>
   );

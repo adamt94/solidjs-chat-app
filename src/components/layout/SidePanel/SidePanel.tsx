@@ -1,7 +1,8 @@
-import { For, Switch, Match, createSignal } from "solid-js";
+import { For, Switch, Match, createSignal, Show } from "solid-js";
 import ContactInfo, { Contact } from "../../ui/ContactInfo";
 import NavBar from "./NavBar";
 import { Motion, Presence } from "@motionone/solid";
+import Contacts from "./Contacts";
 
 interface SidePanelProps {
   contacts: Contact[];
@@ -13,16 +14,18 @@ export default function SidePanel(props: SidePanelProps) {
     props.contacts[0]
   );
 
-  const [expandedState, setExpandedState] = createSignal(true);
+  const [expandedState, setExpandedState] = createSignal<boolean>(true);
+  const [showContacts, setShowContacts] = createSignal<boolean>(false);
 
   return (
     <Motion.aside
-      class={`flex flex-col h-full overflow-hidden transition-all duration-150 ease-out  ${
+      class={`flex flex-col h-full overflow-hidden transition-all duration-150 ease-out relative  ${
         expandedState() ? "w-2/6" : " w-16"
       }`}
     >
       <NavBar
-        onClick={() => setExpandedState(!expandedState())}
+        onMenuClick={() => setExpandedState(!expandedState())}
+        onNewChatClick={() => setShowContacts(true)}
         heading=""
         title=""
         icon=""
@@ -107,6 +110,19 @@ export default function SidePanel(props: SidePanelProps) {
             </Presence>
           </Match>
         </Switch>
+      </div>
+
+      <div
+        class={` absolute h-full top-0 primary-container transform transition-all duration-150 ease-out z-10 ${
+          showContacts() ? "w-full" : "w-0"
+        }`}
+      >
+        <Contacts
+          contacts={props.contacts}
+          onBackClick={() => {
+            setShowContacts(false);
+          }}
+        />
       </div>
     </Motion.aside>
   );

@@ -9,7 +9,8 @@ interface NavItem {
   icon: string;
   heading: string;
   mobileLayout: boolean;
-  onClick: () => void;
+  onMenuClick: () => void;
+  onNewChatClick: () => void;
 }
 
 const NavBar = (props: NavItem) => {
@@ -18,7 +19,7 @@ const NavBar = (props: NavItem) => {
       <Match when={props.mobileLayout}>
         <nav class=" py-2 px-1 flex surface-tint-2 flex-row justify-between items-center h-16">
           <div class="flex items-center">
-            <IconButton label="New chat" onClick={props.onClick}>
+            <IconButton label="Menu" onClick={props.onMenuClick}>
               <FiMenu class=" headline-small primary-text" />
             </IconButton>
           </div>
@@ -30,7 +31,7 @@ const NavBar = (props: NavItem) => {
                 event.currentTarget.src = "https://i.stack.imgur.com/34AD2.jpg";
               }}
             />
-            <IconButton label="New chat" onClick={() => {}}>
+            <IconButton label="New chat" onClick={props.onNewChatClick}>
               <BsPencilSquare class=" headline-small primary-text" />
             </IconButton>
           </div>
@@ -40,12 +41,12 @@ const NavBar = (props: NavItem) => {
       <Match when={!props.mobileLayout}>
         <nav class="flex flex-col surface-tint-1">
           <div class="flex items-center">
-            <IconButton label="New chat" onClick={props.onClick}>
+            <IconButton label="Menu" onClick={props.onMenuClick}>
               <FiMenu class=" headline-small primary-text" />
             </IconButton>
           </div>
           <div class="flex items-center gap-2">
-            <IconButton label="New chat" onClick={() => {}}>
+            <IconButton label="New chat" onClick={props.onNewChatClick}>
               <BsPencilSquare class=" headline-small primary-text" />
             </IconButton>
           </div>

@@ -1,16 +1,19 @@
 import { Motion, Presence } from "@motionone/solid";
 import { For, Match, Switch, createSignal } from "solid-js";
 import { Contact } from "../../ui/ContactInfo";
+import IconButton from "../../ui/IconButton";
+import { IoArrowBackOutline } from "solid-icons/io";
 
-export default function Contacts(props: { contacts: Contact[] }) {
+export type ContactsProps = {
+  contacts: Contact[];
+  onBackClick: () => void;
+};
+
+export default function Contacts(props: ContactsProps) {
   const [expandedState, setExpandedState] = createSignal(true);
 
   return (
-    <Motion.aside
-      class={`flex flex-col h-full overflow-hidden transition-all duration-150 ease-out  ${
-        expandedState() ? "w-2/6" : " w-16"
-      }`}
-    >
+    <Motion.aside class="flex flex-col h-full overflow-hidden">
       <div class="surface-tint-1 h-full">
         <Presence>
           <Motion.div
@@ -19,6 +22,13 @@ export default function Contacts(props: { contacts: Contact[] }) {
             transition={{ delay: 0.1, duration: 0.5 }}
             exit={{ opacity: 0, x: -10 }}
           >
+            <nav class=" py-2 px-1 flex surface-tint-2 flex-row justify-between items-center h-16">
+              <div class="flex items-center">
+                <IconButton label="back" onClick={props.onBackClick}>
+                  <IoArrowBackOutline class=" headline-small on-primary-text" />
+                </IconButton>
+              </div>
+            </nav>
             <For each={props.contacts} fallback={<div>No contacts yet.</div>}>
               {(contact) => (
                 <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
