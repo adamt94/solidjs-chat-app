@@ -13,8 +13,8 @@ export default function Contacts(props: ContactsProps) {
   const [expandedState, setExpandedState] = createSignal(true);
 
   return (
-    <Motion.aside class="flex flex-col h-full overflow-hidden">
-      <div class="surface-tint-1 h-full">
+    <Motion.aside class="flex surface-tint-5 flex-col h-full overflow-hidden">
+      <div class=" h-full">
         <Presence>
           <Motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -22,13 +22,19 @@ export default function Contacts(props: ContactsProps) {
             transition={{ delay: 0.1, duration: 0.5 }}
             exit={{ opacity: 0, x: -10 }}
           >
-            <nav class=" py-2 px-1 flex surface-tint-2 flex-row justify-between items-center h-16">
+            <nav class=" py-2 px-1 flex primary flex-row items-center h-16 mb-5">
               <div class="flex items-center">
                 <IconButton label="back" onClick={props.onBackClick}>
-                  <IoArrowBackOutline class=" headline-small on-primary-text" />
+                  <IoArrowBackOutline class=" headline-small  on-primary-text" />
                 </IconButton>
               </div>
+              <div class="flex items-center">
+                <p class="headline-small on-primary-text">Contacts</p>
+              </div>
             </nav>
+            <div class="title-large on-primary-container-text mx-5">A</div>
+            <div class="h-px on-primary-container my-2 mx-3 w-auto"></div>
+
             <For each={props.contacts} fallback={<div>No contacts yet.</div>}>
               {(contact) => (
                 <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">

@@ -113,7 +113,7 @@ export default function SidePanel(props: SidePanelProps) {
       </div>
 
       <div
-        class={` absolute h-full top-0 primary-container transform transition-all duration-150 ease-out z-10 ${
+        class={` absolute h-full top-0 surface transform transition-all duration-150 ease-out z-10 ${
           showContacts() ? "w-full" : "w-0"
         }`}
       >
