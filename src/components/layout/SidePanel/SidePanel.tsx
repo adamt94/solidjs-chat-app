@@ -56,15 +56,15 @@ export default function SidePanel(props: SidePanelProps) {
                         props.onSelectContact(contact);
                       }}
                     >
-                      <ContactInfo
-                        heading={contact.name}
-                        subheading={
-                          contact.messages.length > 0
-                            ? contact.messages[contact.messages.length - 1].text
-                            : "No messages"
-                        }
-                        image={contact.profilePicture}
-                      />
+                      {contact.messages.length > 0 && (
+                        <ContactInfo
+                          heading={contact.name}
+                          subheading={
+                            contact.messages[contact.messages.length - 1].text
+                          }
+                          image={contact.profilePicture}
+                        />
+                      )}
                       <div class=" ml-12 w-full my-1 h-1 border-b-2 opacity-20" />
                     </div>
                   )}
@@ -125,6 +125,7 @@ export default function SidePanel(props: SidePanelProps) {
           onContactClick={(selected: Contact) => {
             setSelectedContact(selected);
             props.onSelectContact(selected);
+            setShowContacts(false);
           }}
         />
       </div>
