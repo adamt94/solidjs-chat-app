@@ -7,6 +7,7 @@ import { IoArrowBackOutline } from "solid-icons/io";
 export type ContactsProps = {
   contacts: Contact[];
   onBackClick: () => void;
+  onContactClick: (contact: Contact) => void;
 };
 
 export default function Contacts(props: ContactsProps) {
@@ -39,14 +40,19 @@ export default function Contacts(props: ContactsProps) {
             </nav>
             {getSectionHeaders().map((letter) => (
               <>
-                <div class="title-large primary-text mx-5">{letter}</div>
-                <div class="flex items-center">
-                  <div class="flex-1 h-px primary my-2 mx-3"></div>
+                <div class="my-2">
+                  <div class="title-large primary-text mx-5">{letter}</div>
+                  <div class="flex items-center">
+                    <div class="flex-1 h-px primary my-2 mx-3"></div>
+                  </div>
                 </div>
                 {props.contacts
                   .filter((contact) => contact.name[0] === letter)
                   .map((contact) => (
-                    <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center hover:surface-tint-1 hover:cursor-pointer">
+                    <button
+                      onClick={() => props.onContactClick(contact)}
+                      class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center hover:surface-tint-1 hover:cursor-pointer"
+                    >
                       <div class="flex items-center">
                         <img
                           class="w-10 h-10 rounded-full"
@@ -63,7 +69,7 @@ export default function Contacts(props: ContactsProps) {
                           <p class="on-surface-variant-text title-small"></p>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   ))}
               </>
             ))}

@@ -122,6 +122,10 @@ export default function SidePanel(props: SidePanelProps) {
           onBackClick={() => {
             setShowContacts(false);
           }}
+          onContactClick={(selected: Contact) => {
+            setSelectedContact(selected);
+            props.onSelectContact(selected);
+          }}
         />
       </div>
     </Motion.aside>
