@@ -26,7 +26,7 @@ const DateMessage = (props: DateMessageProps) => {
 
   return (
     <div
-      class={`relative py-2 px-4  rounded-2xl inline-block surface-tint-3 surface-tint-text`}
+      class={`relative py-2 px-4  rounded-2xl on-surface-text surface-container inline-block text`}
     >
       <p class={`label-large break-words`}>{formattedDate}</p>
     </div>

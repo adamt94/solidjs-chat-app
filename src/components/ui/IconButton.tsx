@@ -10,7 +10,7 @@ interface IconButtonProps {
 const IconButton = (props: IconButtonProps) => {
   return (
     <button
-      class={`rounded-full hover:surface-tint-1 p-2 m-1 ${props.style}`}
+      class={`rounded-full hover:hover-shadow p-2 m-1 ${props.style}`}
       aria-label={props.label}
       onClick={props.onClick}
     >

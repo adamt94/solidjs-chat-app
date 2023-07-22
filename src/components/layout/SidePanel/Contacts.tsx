@@ -19,7 +19,7 @@ export default function Contacts(props: ContactsProps) {
   };
 
   return (
-    <Motion.aside class="flex surface-tint-5 flex-col h-full overflow-hidden">
+    <Motion.aside class="flex surface-container-highest flex-col h-full overflow-hidden">
       <div class=" h-full">
         <Presence>
           <Motion.div
@@ -51,7 +51,7 @@ export default function Contacts(props: ContactsProps) {
                   .map((contact) => (
                     <button
                       onClick={() => props.onContactClick(contact)}
-                      class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center hover:surface-tint-1 hover:cursor-pointer"
+                      class="py-2 px-3 flex flex-row justify-between items-center hover:hover-shadow hover:cursor-pointer"
                     >
                       <div class="flex items-center">
                         <img

@@ -11,7 +11,7 @@ interface Message {
 const Message = (props: Message) => {
   const sentClass = props.sent
     ? "on-primary-container-text primary-container"
-    : "surface-tint-text surface-tint-5";
+    : "on-secondary-container-text secondary-container";
   const textAlignmentClass = props.sent
     ? "sent text-right"
     : "received text-left";

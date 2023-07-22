@@ -2,7 +2,7 @@ import { For, Show, createSignal } from "solid-js";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
 import { Motion } from "@motionone/solid";
-import { AiOutlineArrowDown } from "solid-icons/ai";
+import { VsArrowSmallDown } from "solid-icons/vs";
 import NavBar from "./NavBar";
 import { Contact } from "../../ui/ContactInfo";
 import DateMessage from "./DateMessage";
@@ -34,7 +34,7 @@ export default function ChatPanel(props: MessageListProps) {
   };
 
   return (
-    <div class="flex flex-col h-full relative surface">
+    <div class="flex flex-col surface h-full relative">
       <NavBar
         heading="last seen 1 minute ago"
         title={props.contact.name}
@@ -100,15 +100,15 @@ export default function ChatPanel(props: MessageListProps) {
         <Show when={showSkipButton()}>
           <div>
             <IconButton
-              style="surface-tint-5"
+              style="tertiary-container"
               label="skip to bottom"
               onClick={handleSkipButtonClick}
             >
-              <AiOutlineArrowDown class="on-surface-text headline-medium" />
+              <VsArrowSmallDown class="tertiary-text display-small" />
             </IconButton>
           </div>
         </Show>
-        <div class="flex-shrink p-2 surface-tint-2">
+        <div class="flex-shrink p-2 surface-container-high">
           <MessageInput onSend={onSend()} />
         </div>
       </div>

@@ -17,7 +17,7 @@ const NavBar = (props: NavItem) => {
   return (
     <Switch>
       <Match when={props.mobileLayout}>
-        <nav class=" py-2 px-1 flex surface-tint-2 flex-row justify-between items-center h-16">
+        <nav class=" py-2 px-1 flex surface-container-highest flex-row justify-between items-center h-16">
           <div class="flex items-center">
             <IconButton label="Menu" onClick={props.onMenuClick}>
               <FiMenu class=" headline-small primary-text" />
@@ -39,7 +39,7 @@ const NavBar = (props: NavItem) => {
       </Match>
 
       <Match when={!props.mobileLayout}>
-        <nav class="flex flex-col surface-tint-1">
+        <nav class="flex flex-col surface-container-highest">
           <div class="flex items-center">
             <IconButton label="Menu" onClick={props.onMenuClick}>
               <FiMenu class=" headline-small primary-text" />

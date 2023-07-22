@@ -32,7 +32,7 @@ export default function SidePanel(props: SidePanelProps) {
         mobileLayout={expandedState()}
       />
 
-      <div class="surface-tint-1 h-full">
+      <div class="surface-container-highest h-full">
         <Switch>
           <Match when={expandedState()}>
             <Presence>
@@ -49,7 +49,9 @@ export default function SidePanel(props: SidePanelProps) {
                   {(contact) => (
                     <div
                       class={`${
-                        selectedContact() === contact ? "surface-tint-1" : ""
+                        selectedContact() === contact
+                          ? "surface-container-high"
+                          : "hover:hover-shadow"
                       } cursor-pointer`}
                       onClick={() => {
                         setSelectedContact(contact);
@@ -88,7 +90,7 @@ export default function SidePanel(props: SidePanelProps) {
                   {(contact) => (
                     <div
                       class={`${
-                        selectedContact() === contact ? "surface-tint-1" : ""
+                        selectedContact() === contact ? "" : ""
                       } cursor-pointer p-2 py-3`}
                       onClick={() => {
                         setSelectedContact(contact);

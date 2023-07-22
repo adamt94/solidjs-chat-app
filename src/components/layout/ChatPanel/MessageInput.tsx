@@ -62,7 +62,7 @@ function MessageInput(props: MessageInputProps) {
       <input
         ref={inputRef}
         type="text"
-        class="flex-1 surface-tint-1 on-surface-text p-2 rounded-2xl px-4 outline-none surface-text-placeholder"
+        class="flex-1 surface-bright on-surface-variant-text p-2 rounded-2xl px-4 outline-none surface-text-placeholder"
         placeholder="Send a message..."
         value={message()}
         onInput={(e) => setMessage(e.target.value)}
