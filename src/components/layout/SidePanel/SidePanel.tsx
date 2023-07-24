@@ -59,15 +59,17 @@ export default function SidePanel(props: SidePanelProps) {
                       }}
                     >
                       {contact.messages.length > 0 && (
-                        <ContactInfo
-                          heading={contact.name}
-                          subheading={
-                            contact.messages[contact.messages.length - 1].text
-                          }
-                          image={contact.profilePicture}
-                        />
+                        <div>
+                          <ContactInfo
+                            heading={contact.name}
+                            subheading={
+                              contact.messages[contact.messages.length - 1].text
+                            }
+                            image={contact.profilePicture}
+                          />
+                          <div class="ml-12 w-full my-1 h-[1px] border-b-1 inverse-surface opacity-50" />
+                        </div>
                       )}
-                      <div class=" ml-12 w-full my-1 h-1 border-b-2 opacity-20" />
                     </div>
                   )}
                 </For>

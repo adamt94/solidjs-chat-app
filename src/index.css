@@ -23,3 +23,83 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.dot-flashing {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  left: 17px;
+  border-radius: 5px;
+  background-color: var(--md-sys-color-on-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  animation: dot-flashing 0.5s infinite linear alternate;
+  animation-delay: 0.25s;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-flashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--md-sys-color-on-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  animation: dot-flashing 0.5s infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--md-sys-color-on-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  animation: dot-flashing 0.5s infinite alternate;
+  animation-delay: 0.5s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: var(--md-sys-color-on-secondary-container);
+  }
+
+  50%,
+  100% {
+    background-color: rgba(152, 128, 255, 0.2);
+  }
+}
+
+.emoji-panel {
+  position: absolute;
+  bottom: 40px;
+  left: 0.5rem;
+  overflow-y: auto;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  display: flex;
+  scroll-behavior: smooth;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 1rem;
+  color: var(--md-sys-color-on-surface-variant);
+  background-color: var(--md-sys-color-surface-variant);
+
+}
+
+.emoji-picker .emoji-section .emoji-items button {
+  padding: 4px;
+  font-size: 25px;
+}
+
+.emoji-panel::-webkit-scrollbar {
+  display: none;
+}

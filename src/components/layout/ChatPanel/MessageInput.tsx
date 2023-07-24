@@ -1,20 +1,29 @@
-import { Show, createSignal, onCleanup, onMount } from "solid-js";
+import { JSX, Show, createSignal, onCleanup, onMount } from "solid-js";
 import { VsSend } from "solid-icons/vs";
-
-import { HiOutlineFaceSmile } from "solid-icons/hi";
-import EmojiPanel from "./EmojiPanel/EmojiPanel";
-import { Emoji } from "solid-emoji-picker";
-import IconButton from "../../ui/IconButton";
-import { Motion, Presence } from "@motionone/solid";
-
-import { RiEditorAttachment2 } from "solid-icons/ri";
+import ChatInput from "../../ui/Chat/Input";
+import ImagePicker from "../../ui/Chat/ImagePicker";
+import EmojiPicker from "../../ui/Chat/EmojiPicker";
 
 interface MessageInputProps {
-  onSend: (text: string) => void;
+  handleSubmit: (
+    e: Event & {
+      submitter: HTMLElement;
+    } & {
+      currentTarget: HTMLFormElement;
+      target: Element;
+    }
+  ) => void;
+  onInputChanged: (
+    e: InputEvent & {
+      currentTarget: HTMLInputElement;
+      target: HTMLInputElement;
+    }
+  ) => void;
+  message: () => string;
+  onEmojiSelect: (emoji: string) => void;
 }
 
 function MessageInput(props: MessageInputProps) {
-  const [message, setMessage] = createSignal("");
   const [showEmojiPanel, setShowEmojiPanel] = createSignal(false);
   let inputRef: HTMLInputElement | undefined;
   let emojiPanelRef: HTMLDivElement | undefined;
@@ -27,68 +36,19 @@ function MessageInput(props: MessageInputProps) {
     }
   };
 
-  function messageSend() {
-    if (message()) {
-      props.onSend(message());
-      setMessage("");
-    }
-  }
-
-  function onClickEmojiIcon() {
-    if (!showEmojiPanel()) {
-      document.addEventListener("click", handleEmojiButtonClick);
-    }
-    inputRef?.focus();
-    setShowEmojiPanel(!showEmojiPanel());
-  }
-
-  const handleEmojiSelect = (emoji: Emoji) => {
-    inputRef?.focus();
-    setMessage(message() + emoji.emoji);
-  };
-
   onCleanup(() => {
     document.removeEventListener("click", handleEmojiButtonClick);
   });
 
   return (
     <div class="flex items-center">
-      <IconButton label={"attach image"} onClick={() => {}}>
-        <RiEditorAttachment2 class="primary-text headline-small" />
-      </IconButton>
-      <IconButton label={"emoji"} onClick={onClickEmojiIcon}>
-        <HiOutlineFaceSmile class="primary-text headline-medium" />
-      </IconButton>
-      <input
-        ref={inputRef}
-        type="text"
-        class="flex-1 surface-bright on-surface-variant-text p-2 rounded-2xl px-4 outline-none surface-text-placeholder"
-        placeholder="Send a message..."
-        value={message()}
-        onInput={(e) => setMessage(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            messageSend();
-          }
-        }}
+      <ImagePicker onSelect={() => {}} />
+      <EmojiPicker onSelect={props.onEmojiSelect} />
+      <ChatInput
+        handleSubmit={props.handleSubmit}
+        onInputChanged={props.onInputChanged}
+        value={props.message}
       />
-      <IconButton label={"send message"} onClick={messageSend}>
-        <VsSend class="primary-text title-large" />
-      </IconButton>
-      <div class="absolute" ref={emojiPanelRef}>
-        <Presence exitBeforeEnter>
-          <Show when={showEmojiPanel()}>
-            <Motion.div
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.6 }}
-              transition={{ duration: 0.3 }}
-            >
-              <EmojiPanel onEmojiSelect={handleEmojiSelect} />
-            </Motion.div>
-          </Show>
-        </Presence>
-      </div>
     </div>
   );
 }

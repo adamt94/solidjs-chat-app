@@ -1,8 +1,8 @@
-interface DateMessageProps {
+interface ConversationDateProps {
   date: Date;
 }
 
-const DateMessage = (props: DateMessageProps) => {
+const ConversationDate = (props: ConversationDateProps) => {
   const now = new Date();
   const startOfWeek = new Date(
     now.getFullYear(),
@@ -33,4 +33,4 @@ const DateMessage = (props: DateMessageProps) => {
   );
 };
 
-export default DateMessage;
+export default ConversationDate;

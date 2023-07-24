@@ -39,7 +39,7 @@ const NavBar = (props: NavItem) => {
       </Match>
 
       <Match when={!props.mobileLayout}>
-        <nav class="flex flex-col surface-container-highest">
+        <nav class="flex flex-col surface-container-highest items-center">
           <div class="flex items-center">
             <IconButton label="Menu" onClick={props.onMenuClick}>
               <FiMenu class=" headline-small primary-text" />

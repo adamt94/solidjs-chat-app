@@ -1,11 +1,17 @@
-import { createSignal, type Component } from "solid-js";
+import {
+  createSignal,
+  type Component,
+  createResource,
+  createEffect,
+  on,
+} from "solid-js";
 
 import logo from "../../../logo.svg";
 import ChatPanel from "../ChatPanel/ChatPanel";
 import SidePanel from "../SidePanel/SidePanel";
 import Message from "../ChatPanel/Message";
 import { Contact } from "../../ui/ContactInfo";
-import Contacts from "../SidePanel/Contacts";
+import { fetchChatGpt } from "../../fetchChatGpt";
 
 const defaultMessages = [
   {
@@ -67,12 +73,16 @@ const App: Component = () => {
     initialContacts as unknown as Contact[]
   );
   const [username] = createSignal("John Doe");
+  const [query, setQuery] = createSignal<string | undefined>();
+
+  const [data] = createResource(query, fetchChatGpt);
 
   const onSelectContact = (contact: Contact) => {
     setSelectedContact(contact);
   };
 
   const sendMessage = (message: Message) => {
+    console.log(message);
     const contact = selectedContact();
     const messages = contact.messages;
     const updatedContact = {
@@ -85,6 +95,23 @@ const App: Component = () => {
     );
   };
 
+  createEffect(
+    on(
+      data,
+      () => {
+        if (data.loading) {
+          return;
+        }
+        const text = data()?.choices[0]?.message.content;
+        sendMessage({
+          username: "Jane Doe",
+          text: text || "Sorry something went wrong.",
+          timestamp: new Date(),
+        });
+      },
+      { defer: true }
+    )
+  );
   return (
     <div>
       <div class="surface flex h-screen relative">
@@ -93,8 +120,12 @@ const App: Component = () => {
         <div class={`w-full`}>
           <ChatPanel
             contact={selectedContact()}
-            sendMessage={sendMessage}
+            sendMessage={(message) => {
+              sendMessage(message);
+              setQuery(message.text);
+            }}
             username={username()}
+            isTyping={data.loading}
           />
         </div>
       </div>

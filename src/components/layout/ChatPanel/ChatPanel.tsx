@@ -1,30 +1,30 @@
 import { For, Show, createSignal } from "solid-js";
-import Message from "./Message";
+
 import MessageInput from "./MessageInput";
-import { Motion } from "@motionone/solid";
 import { VsArrowSmallDown } from "solid-icons/vs";
 import NavBar from "./NavBar";
 import { Contact } from "../../ui/ContactInfo";
-import DateMessage from "./DateMessage";
 import IconButton from "../../ui/IconButton";
+import Conversation from "../../ui/Chat/Conversation";
 
 interface MessageListProps {
   username: string;
   contact: Contact;
   sendMessage: (message: Message) => void;
+  isTyping: boolean;
 }
 
 export default function ChatPanel(props: MessageListProps) {
   const [showSkipButton, setShowSkipButton] = createSignal(false);
-
-  let currentDay: Date | null = null;
+  const [message, setMessage] = createSignal<string>("");
   let scrollRef: HTMLInputElement | undefined;
-  const onSend = () => (text: string) => {
+  const onSend = () => {
     props.sendMessage({
       username: props.username,
-      text: text,
+      text: message(),
       timestamp: new Date(),
     });
+    setMessage("");
   };
 
   const handleSkipButtonClick = () => {
@@ -34,7 +34,7 @@ export default function ChatPanel(props: MessageListProps) {
   };
 
   return (
-    <div class="flex flex-col surface h-full relative">
+    <div class="flex flex-col surface-container-low h-full relative">
       <NavBar
         heading="last seen 1 minute ago"
         title={props.contact.name}
@@ -47,54 +47,19 @@ export default function ChatPanel(props: MessageListProps) {
           ref={scrollRef}
         >
           <div class="flex flex-col p-2">
-            <div class="text-center"></div>
-            <For
-              each={props.contact.messages}
-              fallback={
-                <div class="text-center">
-                  <DateMessage date={new Date()} />
+            <Conversation
+              messages={props.contact.messages}
+              name={props.username}
+            />
+            <Show when={props.isTyping}>
+              <div class="">
+                <div
+                  class={`relative py-2 px-4  pr-14 rounded-2xl inline-block  secondary-container my-2`}
+                >
+                  <div class="dot-flashing"></div>
                 </div>
-              }
-            >
-              {(message, index) => {
-                const timestamp = message.timestamp || new Date();
-                const messageDay = new Date(
-                  timestamp.getFullYear(),
-                  timestamp.getMonth(),
-                  timestamp.getDate()
-                );
-                const shouldRenderDateMessage =
-                  currentDay === null || messageDay > currentDay;
-                currentDay = messageDay;
-
-                return (
-                  <>
-                    {shouldRenderDateMessage && (
-                      <div class="text-center">
-                        <DateMessage date={timestamp} />
-                      </div>
-                    )}
-                    <Motion.div
-                      animate={{
-                        opacity:
-                          index() === props.contact.messages.length - 1
-                            ? [0, 1]
-                            : 1,
-                      }}
-                      transition={{ duration: 0.5, easing: "ease-in-out" }}
-                    >
-                      <Message
-                        username={message.username}
-                        hideUsername={message.username !== props.username}
-                        timestamp={message.timestamp}
-                        text={message.text}
-                        sent={message.username === props.username}
-                      />
-                    </Motion.div>
-                  </>
-                );
-              }}
-            </For>
+              </div>
+            </Show>
           </div>
         </div>
         <Show when={showSkipButton()}>
@@ -109,7 +74,19 @@ export default function ChatPanel(props: MessageListProps) {
           </div>
         </Show>
         <div class="flex-shrink p-2 surface-container-high">
-          <MessageInput onSend={onSend()} />
+          <MessageInput
+            handleSubmit={(e) => {
+              e.preventDefault();
+              onSend();
+            }}
+            message={message}
+            onInputChanged={(e) => {
+              setMessage(e.target.value);
+            }}
+            onEmojiSelect={(emoji) => {
+              setMessage(message() + emoji);
+            }}
+          />
         </div>
       </div>
     </div>
