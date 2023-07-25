@@ -1,4 +1,5 @@
 export type Contact = {
+  id: string;
   name: string;
   profilePicture: string;
   messages: Message[];
@@ -24,10 +25,11 @@ const ContactInfo = (props: ContactInfo) => {
         />
         <div class="ml-4">
           <p class="surface-tint-text title-medium">{props.heading}</p>
-          <p class="on-surface-variant-text title-small">{props.subheading}</p>
+          <p class="on-surface-variant-text title-small truncate">
+            {props.subheading}
+          </p>
         </div>
       </div>
-      <div class="flex">{props.children}</div>
     </div>
   );
 };

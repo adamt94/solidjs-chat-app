@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import { Contact } from "../../ui/ContactInfo";
 import IconButton from "../../ui/IconButton";
 import Conversation from "../../ui/Chat/Conversation";
+import { getLastSeenMessage } from "../../../util/getFormattedTime";
 
 interface MessageListProps {
   username: string;
@@ -22,7 +23,7 @@ export default function ChatPanel(props: MessageListProps) {
     props.sendMessage({
       username: props.username,
       text: message(),
-      timestamp: new Date(),
+      timestamp: new Date().toString(),
     });
     setMessage("");
   };
@@ -36,7 +37,12 @@ export default function ChatPanel(props: MessageListProps) {
   return (
     <div class="flex flex-col surface-container-low h-full relative">
       <NavBar
-        heading="last seen 1 minute ago"
+        heading={
+          getLastSeenMessage(
+            props.contact.messages[props.contact.messages.length - 1]
+              .timestamp || ""
+          ) || "No messages yet."
+        }
         title={props.contact.name}
         icon={props.contact.profilePicture}
       />
@@ -63,7 +69,7 @@ export default function ChatPanel(props: MessageListProps) {
           </div>
         </div>
         <Show when={showSkipButton()}>
-          <div>
+          <div class="absolute bottom-16">
             <IconButton
               style="tertiary-container"
               label="skip to bottom"

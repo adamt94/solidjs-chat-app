@@ -1,13 +1,5 @@
 import { getFormattedTimestamp } from "../../../util/getFormattedTime";
 
-interface Message {
-  username: string;
-  text: string;
-  sent?: boolean;
-  timestamp?: Date;
-  hideUsername?: boolean;
-}
-
 const Message = (props: Message) => {
   const sentClass = props.sent
     ? "on-primary-container-text primary-container"
@@ -18,18 +10,16 @@ const Message = (props: Message) => {
   const messageGapClass = props.hideUsername ? "mb-1" : "my-2";
 
   return (
-    <div class={`${textAlignmentClass} ${messageGapClass} `}>
+    <div class={`${textAlignmentClass} ${messageGapClass}`}>
       {props.hideUsername && (
         <div class="label-medium font-bold primary-text">{props.username}</div>
       )}
-      <div
-        class={`relative py-2 px-4  pr-14 rounded-2xl inline-block ${sentClass}`}
-      >
+      <div class={`relative py-2 px-4 rounded-2xl inline-block ${sentClass}`}>
         <p class={`label-large break-words`}>{props.text}</p>
-        <div class="label-small absolute bottom-1 right-3">
+        <div class="label-small text-right">
           {props.timestamp && (
             <span class="primary-text">
-              {getFormattedTimestamp(props.timestamp)}
+              {getFormattedTimestamp(new Date(props.timestamp))}
             </span>
           )}
         </div>

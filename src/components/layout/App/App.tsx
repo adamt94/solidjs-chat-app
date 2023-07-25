@@ -9,69 +9,29 @@ import {
 import logo from "../../../logo.svg";
 import ChatPanel from "../ChatPanel/ChatPanel";
 import SidePanel from "../SidePanel/SidePanel";
-import Message from "../ChatPanel/Message";
 import { Contact } from "../../ui/ContactInfo";
 import { fetchChatGpt } from "../../fetchChatGpt";
-
-const defaultMessages = [
-  {
-    username: "John Doe",
-    text: "Hello world!",
-    timestamp: new Date(new Date().getTime() - 48 * 60 * 60 * 1000),
-  },
-  {
-    username: "Jane Doe",
-    text: "Hi, John!",
-    timestamp: new Date(new Date().getTime() - 4 * 60 * 60 * 1000),
-  },
-  {
-    username: "John Doe",
-    text: "How are you?",
-    timestamp: new Date(new Date().getTime() - 4 * 60 * 60 * 1000),
-  },
-  {
-    username: "Jane Doe",
-    text: "I'm fine, thanks!",
-    timestamp: new Date(new Date().getTime() - 4 * 59 * 60 * 1000),
-  },
-  {
-    username: "John Doe",
-    text: "Good to hear!",
-    timestamp: new Date(new Date().getTime() - 4 * 58 * 60 * 1000),
-  },
-  {
-    username: "Jane Doe",
-    text: "Goodbye!",
-    timestamp: new Date(new Date().getTime() - 1 * 55 * 60 * 1000),
-  },
-];
+import { createLocalStore } from "../../localStorage";
 
 const initialContacts = [
   {
-    name: "Jane Doe",
+    id: "chat-gpt-1",
+    name: "Chat Gpt",
     profilePicture:
       "https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg",
-    messages: defaultMessages,
-  },
-  {
-    name: "Fred Salmon",
-    profilePicture: logo,
-    messages: [{ username: "Fred Salmon", text: "Hello world!" }],
-  },
-  {
-    name: "Simon Salmon",
-    profilePicture: "",
     messages: [],
   },
 ];
 
 const App: Component = () => {
-  const [selectedContact, setSelectedContact] = createSignal<Contact>(
-    initialContacts[0] as unknown as Contact
-  );
-  const [contacts, setContacts] = createSignal<Contact[]>(
+  const [contacts, setContacts] = createLocalStore<Contact[]>(
+    "contacts",
     initialContacts as unknown as Contact[]
   );
+  const [selectedContact, setSelectedContact] = createSignal<Contact>(
+    contacts[0]
+  );
+
   const [username] = createSignal("John Doe");
   const [query, setQuery] = createSignal<string | undefined>();
 
@@ -82,7 +42,6 @@ const App: Component = () => {
   };
 
   const sendMessage = (message: Message) => {
-    console.log(message);
     const contact = selectedContact();
     const messages = contact.messages;
     const updatedContact = {
@@ -91,7 +50,7 @@ const App: Component = () => {
     } as Contact;
     setSelectedContact(updatedContact);
     setContacts(
-      contacts().map((c) => (c.name === contact.name ? updatedContact : c))
+      contacts.map((c) => (c.name === contact.name ? updatedContact : c))
     );
   };
 
@@ -99,23 +58,39 @@ const App: Component = () => {
     on(
       data,
       () => {
-        if (data.loading) {
+        if (data.loading || data.error) {
           return;
         }
         const text = data()?.choices[0]?.message.content;
         sendMessage({
-          username: "Jane Doe",
+          username: "Chat Gpt",
           text: text || "Sorry something went wrong.",
-          timestamp: new Date(),
+          timestamp: new Date().toString(),
         });
       },
       { defer: true }
     )
   );
+
   return (
     <div>
       <div class="surface flex h-screen relative">
-        <SidePanel contacts={contacts()} onSelectContact={onSelectContact} />
+        <SidePanel
+          contacts={contacts}
+          onSelectContact={onSelectContact}
+          onNewChatClick={() => {
+            setContacts([
+              ...contacts,
+              {
+                id: `chat-gpt-${contacts.length}`,
+                name: "Chat Gpt BANTER",
+                profilePicture:
+                  "https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg",
+                messages: [],
+              },
+            ]);
+          }}
+        />
 
         <div class={`w-full`}>
           <ChatPanel

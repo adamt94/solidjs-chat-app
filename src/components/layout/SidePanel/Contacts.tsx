@@ -51,7 +51,7 @@ export default function Contacts(props: ContactsProps) {
                   .map((contact) => (
                     <button
                       onClick={() => props.onContactClick(contact)}
-                      class="py-2 px-3 flex flex-row justify-between items-center hover:hover-shadow hover:cursor-pointer"
+                      class="py-2 px-3 w-full flex flex-row justify-between items-center hover:hover-shadow hover:cursor-pointer"
                     >
                       <div class="flex items-center">
                         <img

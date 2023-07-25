@@ -1,4 +1,4 @@
-import { For, createSignal } from "solid-js";
+import { For } from "solid-js";
 import Message from "./Message";
 import { Motion } from "@motionone/solid";
 import ConversationDate from "./ConversationDate";
@@ -19,7 +19,9 @@ export default function Conversation(props: ConversationProps) {
       }
     >
       {(message, index) => {
-        const timestamp = message.timestamp || new Date();
+        const timestamp = message.timestamp
+          ? new Date(message.timestamp)
+          : new Date();
         const messageDay = new Date(
           timestamp.getFullYear(),
           timestamp.getMonth(),

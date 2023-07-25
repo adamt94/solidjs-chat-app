@@ -21,21 +21,20 @@ export const fetchChatGpt = async (message: string) => {
           }
         ]
       };
+      
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer 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`
+      'Authorization': ``
     },
     body: JSON.stringify(params)
-  });
-
+  })
   if(!response.ok) {
-    throw new Error('Network response was not ok');
+    console.log('Error fetching chat');
   }
 
   const data = await response.json();
-  console.log(message, data);
   return data as Result;
 }
  
