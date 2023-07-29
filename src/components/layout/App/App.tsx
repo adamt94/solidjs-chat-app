@@ -83,7 +83,7 @@ const App: Component = () => {
               ...contacts,
               {
                 id: `chat-gpt-${contacts.length}`,
-                name: "Chat Gpt BANTER",
+                name: `Chat Gpt ${contacts.length}`,
                 profilePicture:
                   "https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg",
                 messages: [],

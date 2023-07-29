@@ -40,8 +40,8 @@ export default function ChatPanel(props: MessageListProps) {
         heading={
           getLastSeenMessage(
             props.contact.messages[props.contact.messages.length - 1]
-              .timestamp || ""
-          ) || "No messages yet."
+              ?.timestamp || ""
+          ) || "No messages"
         }
         title={props.contact.name}
         icon={props.contact.profilePicture}

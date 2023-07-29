@@ -7,6 +7,7 @@ export const getFormattedTimestamp = (timestamp: Date): string => {
 
 
 export const getLastSeenMessage = (timestamp: string): string | undefined => {
+  if (!timestamp) return undefined;
   const now = new Date();
   const lastSeen = new Date(timestamp);
   const timeDiff = now.getTime() - lastSeen.getTime();

@@ -52,7 +52,7 @@ export default function SidePanel(props: SidePanelProps) {
                     <div
                       class={`${
                         selectedContact() === contact
-                          ? "surface-container-high"
+                          ? "secondary-fixed"
                           : "hover:hover-shadow"
                       } cursor-pointer`}
                       onClick={() => {
@@ -61,7 +61,7 @@ export default function SidePanel(props: SidePanelProps) {
                       }}
                     >
                       {contact.messages.length > 0 && (
-                        <div>
+                        <div class=" overflow-hidden w-full">
                           <ContactInfo
                             heading={contact.name}
                             subheading={
@@ -118,7 +118,7 @@ export default function SidePanel(props: SidePanelProps) {
         </Switch>
         <div class="text-center my-2">
           <IconButton label="New chat" onClick={props.onNewChatClick}>
-            <BsPlusCircleFill class=" headline-small primary-text" />
+            <BsPlusCircleFill class=" headline-small surface-dim-text" />
           </IconButton>
         </div>
       </div>

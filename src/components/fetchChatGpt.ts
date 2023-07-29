@@ -26,7 +26,7 @@ export const fetchChatGpt = async (message: string) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': ``
+      'Authorization': `Bearer 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`
     },
     body: JSON.stringify(params)
   })
