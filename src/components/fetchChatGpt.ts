@@ -26,12 +26,12 @@ export const fetchChatGpt = async (message: string) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer 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`
+      'Authorization': ``
     },
     body: JSON.stringify(params)
   })
   if(!response.ok) {
-    console.log('Error fetching chat');
+    return { choices: [{ message: { content: "Sorry, something went wrong", role: "bot" }, index: 0, finish_reason: "error" }], created: 0, model: "" };
   }
 
   const data = await response.json();

@@ -58,7 +58,7 @@ const App: Component = () => {
     on(
       data,
       () => {
-        if (data.loading || data.error) {
+        if (data.loading) {
           return;
         }
         const text = data()?.choices[0]?.message.content;
@@ -89,6 +89,7 @@ const App: Component = () => {
                 messages: [],
               },
             ]);
+            setSelectedContact(contacts[contacts.length - 1]);
           }}
         />
 
