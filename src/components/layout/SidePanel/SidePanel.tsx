@@ -52,7 +52,7 @@ export default function SidePanel(props: SidePanelProps) {
                     <div
                       class={`${
                         selectedContact() === contact
-                          ? "secondary-fixed"
+                          ? "outline-variant"
                           : "hover:hover-shadow"
                       } cursor-pointer`}
                       onClick={() => {
