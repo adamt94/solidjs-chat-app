@@ -1,52 +1,37 @@
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
 import { For } from "solid-js/web";
-import classNames from "classnames";
 
-const DropdownMenu = () => {
-  const [isOpen, setIsOpen] = createSignal(false);
+type DropdownMenuProps = {
+  isOpen: boolean;
+  onSelected: (item: string) => void;
+  menuItems: string[];
+};
 
-  const toggleMenu = () => setIsOpen(!isOpen());
-
-  const menuItems = [
-    "Option 1",
-    "Option 2",
-    "Option 3",
-    "Option 4",
-    // Add more options here as needed
-  ];
-
+const DropdownMenu = (props: DropdownMenuProps) => {
   return (
     <div class="relative">
-      <button
-        onClick={toggleMenu}
-        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-      >
-        {isOpen() ? "Close Menu" : "Open Menu"}
-      </button>
-      {isOpen() && (
-        <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+      <Show when={props.isOpen}>
+        <div class="origin-top-right top-14 absolute right-2 w-40  surface-container-high rounded-lg">
           <div
             class="py-1"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            <For each={menuItems}>
+            <For each={props.menuItems}>
               {(item) => (
-                <a
-                  href="#"
-                  class={classNames("block px-4 py-2 text-sm text-gray-700", {
-                    "bg-blue-100 text-blue-600": item === "Option 1", // Customize active item styles here
-                  })}
+                <button
+                  onclick={() => props.onSelected(item)}
+                  class={`block w-full py-2 text-sm on-surface-text  hover:hover-shadow `}
                   role="menuitem"
                 >
                   {item}
-                </a>
+                </button>
               )}
             </For>
           </div>
         </div>
-      )}
+      </Show>
     </div>
   );
 };

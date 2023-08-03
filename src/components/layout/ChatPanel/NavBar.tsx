@@ -1,4 +1,6 @@
+import { createSignal } from "solid-js";
 import ContactInfo from "../../ui/ContactInfo";
+import DropdownMenu from "../../ui/DropDownMenu";
 import IconButton from "../../ui/IconButton";
 
 interface NavItem {
@@ -8,6 +10,7 @@ interface NavItem {
 }
 
 const NavBar = (props: NavItem) => {
+  const [showMenu, setShowMenu] = createSignal(false);
   return (
     <nav class="surface-container-high h-16 flex justify-between items-center">
       <ContactInfo
@@ -31,7 +34,12 @@ const NavBar = (props: NavItem) => {
           </svg>
         </IconButton>
 
-        <IconButton onClick={() => {}} label="menu">
+        <IconButton
+          onClick={() => {
+            setShowMenu(!showMenu());
+          }}
+          label="menu"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -45,6 +53,13 @@ const NavBar = (props: NavItem) => {
             ></path>
           </svg>
         </IconButton>
+        <DropdownMenu
+          onSelected={() => {
+            setShowMenu(false);
+          }}
+          menuItems={["New Conversation", "Clear Chat"]}
+          isOpen={showMenu()}
+        />
       </div>
     </nav>
   );
