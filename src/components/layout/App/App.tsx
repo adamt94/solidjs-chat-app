@@ -5,8 +5,6 @@ import {
   createEffect,
   on,
 } from "solid-js";
-
-import logo from "../../../logo.svg";
 import ChatPanel from "../ChatPanel/ChatPanel";
 import SidePanel from "../SidePanel/SidePanel";
 import { Contact } from "../../ui/ContactInfo";
@@ -39,6 +37,33 @@ const App: Component = () => {
 
   const onSelectContact = (contact: Contact) => {
     setSelectedContact(contact);
+  };
+
+  const onNewChatClick = () => {
+    setContacts([
+      ...contacts,
+      {
+        id: `chat-gpt-${contacts.length}`,
+        name: `Chat Gpt ${contacts.length}`,
+        profilePicture:
+          "https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg",
+        messages: [],
+        type: "conversation",
+      },
+    ]);
+    setSelectedContact(contacts[contacts.length - 1]);
+  };
+
+  const onClearChat = () => {
+    const contact = selectedContact();
+    const updatedContact = {
+      ...contact,
+      messages: [],
+    } as Contact;
+    setSelectedContact(updatedContact);
+    setContacts(
+      contacts.map((c) => (c.name === contact.name ? updatedContact : c))
+    );
   };
 
   const sendMessage = (message: Message) => {
@@ -75,23 +100,7 @@ const App: Component = () => {
   return (
     <div>
       <div class="surface flex h-screen relative">
-        <SidePanel
-          contacts={contacts}
-          onSelectContact={onSelectContact}
-          onNewChatClick={() => {
-            setContacts([
-              ...contacts,
-              {
-                id: `chat-gpt-${contacts.length}`,
-                name: `Chat Gpt ${contacts.length}`,
-                profilePicture:
-                  "https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg",
-                messages: [],
-              },
-            ]);
-            setSelectedContact(contacts[contacts.length - 1]);
-          }}
-        />
+        <SidePanel contacts={contacts} onSelectContact={onSelectContact} />
 
         <div class={`w-full`}>
           <ChatPanel
@@ -100,6 +109,8 @@ const App: Component = () => {
               sendMessage(message);
               setQuery(message.text);
             }}
+            onClearChat={onClearChat}
+            onNewChatClick={onNewChatClick}
             username={username()}
             isTyping={data.loading}
           />

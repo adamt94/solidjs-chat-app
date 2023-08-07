@@ -3,6 +3,7 @@ export type Contact = {
   name: string;
   profilePicture: string;
   messages: Message[];
+  type?: "conversation";
 };
 
 interface ContactInfo {

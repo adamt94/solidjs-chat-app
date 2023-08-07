@@ -3,13 +3,10 @@ import ContactInfo, { Contact } from "../../ui/ContactInfo";
 import NavBar from "./NavBar";
 import { Motion, Presence } from "@motionone/solid";
 import Contacts from "./Contacts";
-import { BsPlusCircleFill } from "solid-icons/bs";
-import IconButton from "../../ui/IconButton";
 
 interface SidePanelProps {
   contacts: Contact[];
   onSelectContact: (contact: Contact) => void;
-  onNewChatClick: () => void;
 }
 
 export default function SidePanel(props: SidePanelProps) {
@@ -19,6 +16,11 @@ export default function SidePanel(props: SidePanelProps) {
 
   const [expandedState, setExpandedState] = createSignal<boolean>(true);
   const [showContacts, setShowContacts] = createSignal<boolean>(false);
+
+  const contacts = props.contacts.filter(
+    (contact) => contact.type !== "conversation"
+  );
+
   return (
     <Motion.aside
       class={`flex flex-col h-full overflow-hidden transition-all duration-150 ease-out relative  ${
@@ -116,11 +118,6 @@ export default function SidePanel(props: SidePanelProps) {
             </Presence>
           </Match>
         </Switch>
-        <div class="text-center my-2">
-          <IconButton label="New chat" onClick={props.onNewChatClick}>
-            <BsPlusCircleFill class=" headline-small surface-dim-text" />
-          </IconButton>
-        </div>
       </div>
 
       <div
@@ -129,7 +126,7 @@ export default function SidePanel(props: SidePanelProps) {
         }`}
       >
         <Contacts
-          contacts={props.contacts}
+          contacts={contacts}
           onBackClick={() => {
             setShowContacts(false);
           }}

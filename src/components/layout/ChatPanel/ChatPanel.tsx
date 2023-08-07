@@ -13,6 +13,8 @@ interface MessageListProps {
   contact: Contact;
   sendMessage: (message: Message) => void;
   isTyping: boolean;
+  onNewChatClick: () => void;
+  onClearChat: () => void;
 }
 
 export default function ChatPanel(props: MessageListProps) {
@@ -34,6 +36,15 @@ export default function ChatPanel(props: MessageListProps) {
     }
   };
 
+  const onDropDownMenuSelected = (item: string) => {
+    if (item == "New Conversation") {
+      props.onNewChatClick();
+    }
+    if ("Clear Chat" == item) {
+      props.onClearChat();
+    }
+  };
+
   return (
     <div class="flex flex-col surface-container-low h-full relative">
       <NavBar
@@ -45,6 +56,7 @@ export default function ChatPanel(props: MessageListProps) {
         }
         title={props.contact.name}
         icon={props.contact.profilePicture}
+        dropDownMenuSelected={onDropDownMenuSelected}
       />
       <div class="flex flex-col flex-grow overflow-y-auto">
         <div

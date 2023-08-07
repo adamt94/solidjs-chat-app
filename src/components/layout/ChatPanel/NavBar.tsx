@@ -7,6 +7,7 @@ interface NavItem {
   title: string;
   icon: string;
   heading: string;
+  dropDownMenuSelected: (item: string) => void;
 }
 
 const NavBar = (props: NavItem) => {
@@ -54,8 +55,9 @@ const NavBar = (props: NavItem) => {
           </svg>
         </IconButton>
         <DropdownMenu
-          onSelected={() => {
+          onSelected={(item) => {
             setShowMenu(false);
+            props.dropDownMenuSelected(item);
           }}
           menuItems={["New Conversation", "Clear Chat"]}
           isOpen={showMenu()}
