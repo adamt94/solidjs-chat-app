@@ -93,26 +93,28 @@ export default function SidePanel(props: SidePanelProps) {
                   each={props.contacts}
                   fallback={<div>No contacts yet.</div>}
                 >
-                  {(contact) => (
-                    <div
-                      class={`${
-                        selectedContact() === contact ? "" : ""
-                      } cursor-pointer p-2 py-3`}
-                      onClick={() => {
-                        setSelectedContact(contact);
-                        props.onSelectContact(contact);
-                      }}
-                    >
-                      <img
-                        class="w-10 h-10 rounded-full justify-center"
-                        src={contact.profilePicture}
-                        onError={(event) => {
-                          event.currentTarget.src =
-                            "https://i.stack.imgur.com/34AD2.jpg";
+                  {(contact) =>
+                    contact.messages.length > 0 && (
+                      <div
+                        class={`${
+                          selectedContact() === contact ? "" : ""
+                        } cursor-pointer p-2 py-3`}
+                        onClick={() => {
+                          setSelectedContact(contact);
+                          props.onSelectContact(contact);
                         }}
-                      />
-                    </div>
-                  )}
+                      >
+                        <img
+                          class="w-10 h-10 rounded-full justify-center"
+                          src={contact.profilePicture}
+                          onError={(event) => {
+                            event.currentTarget.src =
+                              "https://i.stack.imgur.com/34AD2.jpg";
+                          }}
+                        />
+                      </div>
+                    )
+                  }
                 </For>
               </Motion.div>
             </Presence>
