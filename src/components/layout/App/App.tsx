@@ -99,7 +99,7 @@ const App: Component = () => {
 
   return (
     <div>
-      <div class="surface flex h-screen relative">
+      <div class="surface flex h-screen-dynamic relative">
         <SidePanel contacts={contacts} onSelectContact={onSelectContact} />
 
         <div class={`w-full`}>
