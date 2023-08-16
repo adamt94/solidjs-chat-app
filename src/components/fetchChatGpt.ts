@@ -26,7 +26,7 @@ export const fetchChatGpt = async (message: string) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': ``
+      'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`
     },
     body: JSON.stringify(params)
   })
