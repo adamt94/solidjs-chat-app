@@ -86,6 +86,7 @@ const App: Component = () => {
         if (data.loading) {
           return;
         }
+        console.log(data());
         const text = data()?.choices[0]?.message.content;
         sendMessage({
           username: "Chat Gpt",
